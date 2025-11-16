@@ -4,6 +4,8 @@ import { useAuth } from './AuthContext'
 const CartContext = createContext()
 export function useCart(){ return useContext(CartContext) }
 
+const API = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+
 export default function CartProvider({ children }){
   const [items, setItems] = useState([])
   const { token, authFetch } = useAuth()
@@ -54,7 +56,7 @@ export default function CartProvider({ children }){
 
   async function checkout(){
     if (!token) throw new Error('Not authenticated')
-    const res = await fetch('http://localhost:5000/api/cart/checkout', {
+    const res = await fetch(`${API}/api/cart/checkout`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ items: items.map(i=>({ product: i.product, size: i.size, qty: i.qty })) })

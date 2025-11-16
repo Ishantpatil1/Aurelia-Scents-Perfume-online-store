@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
 
+const API = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+
 export function useAuth(){
   return useContext(AuthContext)
 }
@@ -30,7 +32,7 @@ export default function AuthProvider({ children }){
   }
 
   async function login(email, password){
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch(`${API}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -42,7 +44,7 @@ export default function AuthProvider({ children }){
   }
 
   async function register(name, email, password){
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch(`${API}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })

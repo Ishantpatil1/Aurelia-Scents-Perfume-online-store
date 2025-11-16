@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import ProductCard from '../shared/ProductCard'
 
+const API = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+
 const container = {
   hidden: { opacity: 0, y: 8 },
   show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08, when: 'beforeChildren' } }
@@ -16,7 +18,7 @@ export default function Home(){
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    fetch('http://localhost:5000/api/products')
+    fetch(`${API}/api/products`)
       .then(res => res.json())
       .then(data => setProducts(data || []))
       .catch(err => console.error(err))

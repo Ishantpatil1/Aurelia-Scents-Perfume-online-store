@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useCart } from '../context/CartContext'
 import './ProductPage.css'
 
+const API = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+
 export default function ProductPage(){
   const { id } = useParams()
   const [product, setProduct] = useState(null)
@@ -33,7 +35,7 @@ export default function ProductPage(){
   },[])
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`${API}/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.error(err))
@@ -42,7 +44,7 @@ export default function ProductPage(){
 
   function submitReview(e){
     e.preventDefault()
-    fetch(`http://localhost:5000/api/products/${id}/reviews`, {
+    fetch(`${API}/api/products/${id}/reviews`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
