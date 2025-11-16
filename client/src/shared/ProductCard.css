@@ -1,0 +1,210 @@
+:root{
+  --champagne: #E6C680;
+  --luxe-gold: #D4A759;
+  --pearl: #FAF8F3;
+  --ivory: #F3EFE7;
+  --matte-black: #0D0D0D;
+}
+
+.lux-card{
+  cursor: pointer;
+  perspective: 900px;
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 18px auto;
+  border-radius: 16px;
+  transform-style: preserve-3d;
+  transition: transform 450ms cubic-bezier(.2,.9,.25,1), box-shadow 350ms;
+}
+
+.lux-panel{
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(212,167,89,0.15);
+  box-shadow:
+    0 12px 30px rgba(2,2,2,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.02),
+    0 2px 8px rgba(212,167,89,0.04);
+  backdrop-filter: blur(28px) saturate(1.05);
+  -webkit-backdrop-filter: blur(28px) saturate(1.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.bg-bokeh{
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 10% 20%, rgba(214,167,89,0.06) 0 6px, transparent 40%), radial-gradient(circle at 80% 70%, rgba(230,198,120,0.04) 0 8px, transparent 40%), radial-gradient(circle at 50% 40%, rgba(255,255,255,0.03) 0 3px, transparent 30%);
+  mix-blend-mode: screen;
+  z-index: 0;
+  animation: drift 12s linear infinite;
+}
+
+@keyframes drift{
+  0%{transform: translateY(0) translateX(0) rotate(0)}
+  50%{transform: translateY(-6px) translateX(4px) rotate(0.2deg)}
+  100%{transform: translateY(0) translateX(0) rotate(0)}
+}
+
+/* Reduce motion and heavy hover effects on touch devices / small screens */
+@media (hover: none), (pointer: coarse) {
+  .bg-bokeh{ animation: none !important; }
+  .lux-card{ transition: none !important; }
+  .lux-panel{ box-shadow: 0 8px 24px rgba(2,2,2,0.45); }
+  .prod-img{ transition: none !important; transform: none !important }
+  .lux-card:hover .lux-panel{ transform: none; box-shadow: 0 10px 28px rgba(2,2,2,0.52); }
+  .lux-card:hover .gold-shimmer, .lux-card:hover .rim-light { opacity: 0 !important }
+}
+
+/* Slightly smaller cards on narrow screens */
+@media (max-width:880px){
+  .lux-card{ max-width: 100%; margin: 12px 0; }
+  .prod-img{ max-height:160px }
+}
+
+.image-wrap{
+  position: relative;
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 6px 6px 6px;
+  z-index: 2;
+}
+
+.prod-img{
+  width: auto;
+  max-height: 220px;
+  object-fit: contain;
+  transform-origin: 50% 60%;
+  transition: transform 700ms cubic-bezier(.2,.9,.25,1), filter 500ms;
+  filter: drop-shadow(0 18px 36px rgba(2,2,2,0.6)) saturate(1.05) contrast(1.02);
+  z-index: 3;
+}
+
+.image-wrap.hover .prod-img{ transform: translateY(-6px) scale(1.06); }
+
+.img-reflection{
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+  width: 62%;
+  height: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  filter: blur(6px) saturate(.9);
+  opacity: 0.45;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.rim-light{
+  pointer-events: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 20% 20%, rgba(230,198,120,0.14), transparent 30%);
+  mix-blend-mode: screen;
+  filter: blur(16px);
+  z-index: 2;
+}
+
+.info-wrap{
+  z-index: 4;
+  width: 100%;
+  text-align: center;
+  padding: 6px 8px 12px 8px;
+}
+
+.lux-title{
+  margin: 6px 0 4px 0;
+  font-family: 'Playfair Display', 'Cormorant Garamond', 'Times New Roman', serif;
+  color: var(--pearl);
+  letter-spacing: 0.8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+}
+
+.lux-desc{
+  margin: 0 0 8px 0;
+  color: rgba(250,248,243,0.88);
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.92;
+}
+
+.price-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+
+.price{
+  color: var(--champagne);
+  font-family: 'Playfair Display', serif;
+  font-weight:700;
+  font-size:1.05rem;
+  text-shadow: 0 6px 18px rgba(230,198,120,0.06), 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.lux-cta{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(212,167,89,0.28);
+  color: var(--pearl);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.6px;
+  box-shadow: 0 6px 22px rgba(2,2,2,0.5), 0 0 24px rgba(212,167,89,0.03) inset;
+  transition: transform 320ms, box-shadow 320ms, background 320ms;
+}
+
+.lux-cta:hover{ transform: translateY(-3px); box-shadow: 0 8px 32px rgba(2,2,2,0.6), 0 0 40px rgba(212,167,89,0.06); }
+
+.gold-shimmer{
+  position: absolute;
+  left: -40%;
+  top: -20%;
+  width: 220%;
+  height: 160%;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,167,89,0.08) 40%, rgba(255,255,255,0.05) 50%, rgba(212,167,89,0.06) 60%, transparent 100%);
+  transform: rotate(-18deg) translateY(-6px);
+  filter: blur(18px);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 900ms cubic-bezier(.2,.9,.25,1), transform 900ms;
+}
+
+.lux-card:hover .lux-panel{ box-shadow: 0 28px 80px rgba(2,2,2,0.7), inset 0 1px 0 rgba(255,255,255,0.02); transform: translateY(-6px); }
+.lux-card:hover .gold-shimmer{ opacity: 1; transform: rotate(-18deg) translateY(0); }
+.lux-card:hover .rim-light{ opacity: 1 }
+
+/* subtle shimmer sweep on title */
+.lux-card:hover .lux-title{ background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* responsive */
+@media (max-width:880px){
+  .lux-card{ max-width: 100%; }
+  .prod-img{ max-height:180px }
+}
+
+@media (max-width:480px){
+  .prod-img{ max-height:150px }
+  .lux-title{ font-size: .98rem }
+}
+
+/* Accessibility: focus state */
+.lux-card:focus{ outline: 2px solid rgba(214,167,89,0.14); outline-offset: 6px }

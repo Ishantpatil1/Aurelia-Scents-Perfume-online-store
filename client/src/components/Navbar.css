@@ -1,0 +1,56 @@
+/* Navbar-specific styles: ensure header text is cream-white and readable on dark backgrounds */
+
+:root{--nav-cream:#fff7ec;--nav-accent:#ffdca3}
+
+/* Strong, high-specificity overrides for header elements */
+header.lux-header .lux-inner .lux-sub,
+header.lux-header .lux-left .lux-sub,
+header.site-header .tag {
+    
+	color:var(--nav-cream) !important;
+	font-weight:500 !important;
+}
+
+header.lux-header .lux-nav .lux-link,
+header.site-header .main-nav a,
+header.lux-header .lux-nav .lux-link:link,
+header.lux-header .lux-nav .lux-link:visited {
+	color:var(--nav-cream) !important;
+	opacity:1 !important;
+	font-weight:600 !important;
+}
+
+header.lux-header .lux-nav .lux-link:hover,
+header.site-header .main-nav a:hover {
+	color:#ffffff !important;
+	text-decoration:none !important;
+}
+
+/* User / auth / cart */
+header.lux-header .lux-tools .user-name,
+header.lux-header .auth-wrap .btn,
+header.lux-header .auth-wrap a,
+header.site-header .auth .btn {
+	color:var(--nav-cream) !important;
+}
+
+/* Cart mini badge: cream text with subtle dark text-shadow for legibility */
+header.lux-header .mini-badge,
+header.site-header .mini-badge {
+	color:var(--nav-cream) !important;
+	background:linear-gradient(90deg,#d4a759,#ffdca3) !important;
+	font-weight:700 !important;
+	text-shadow:0 1px 0 rgba(0,0,0,0.6) !important;
+}
+
+/* Hamburger bars */
+header.lux-header .hamburger span,
+header.site-header .hamburger span {
+	background:var(--nav-cream) !important;
+}
+
+/* Mobile nav links */
+header.lux-header .lux-nav.open .lux-link { color:var(--nav-cream) !important }
+
+/* container padding tweak */
+.lux-inner.container{padding-left:1rem;padding-right:1rem}

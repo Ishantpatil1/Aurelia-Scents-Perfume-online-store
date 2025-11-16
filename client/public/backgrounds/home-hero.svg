@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F0F0F"/>
+      <stop offset="45%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#3D2B1F"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="20%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#EAD7A8" stop-opacity="0.40"/>
+      <stop offset="30%" stop-color="#D4A759" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <filter id="grain"><feTurbulence baseFrequency="0.6" numOctaves="2" stitchTiles="stitch" result="t"/><feColorMatrix type="saturate" values="0"/></filter>
+
+    <filter id="softBlur"><feGaussianBlur stdDeviation="12" result="b"/></filter>
+
+    <radialGradient id="smoke" cx="70%" cy="65%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0.0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base gradient -->
+  <rect width="100%" height="100%" fill="url(#g1)" />
+
+  <!-- Soft gold radial glow -->
+  <rect width="100%" height="100%" fill="url(#goldGlow)" />
+
+  <!-- Subtle smoky shapes -->
+  <g opacity="0.06">
+    <path d="M-200 400 C 300 100 600 0 1200 200 C 1700 380 2100 300 2600 420 C 3200 560 3700 420 4200 480 L4200 1600 L-200 1600 Z" fill="url(#smoke)"/>
+  </g>
+
+  <!-- Low-contrast crystal shards (decorative) -->
+  <g transform="translate(2200,280) rotate(-12)" opacity="0.05">
+    <polygon points="0,0 140,40 200,130 100,180 0,120" fill="#fff"/>
+    <polygon points="80,20 210,60 300,160 180,210 70,160" fill="#E6D3B0"/>
+  </g>
+
+  <!-- Glassy frosted band -->
+  <rect x="360" y="1360" width="3120" height="420" rx="28" fill="rgba(255,255,255,0.02)" style="mix-blend-mode:overlay;" />
+
+  <!-- Texture overlay -->
+  <rect width="100%" height="100%" fill="#000" filter="url(#grain)" opacity="0.02" />
+
+  <!-- Decorative gold particles (static fallback) -->
+  <g fill="#D4A759" opacity="0.9">
+    <circle cx="900" cy="380" r="2.6"/>
+    <circle cx="1100" cy="460" r="1.8"/>
+    <circle cx="1250" cy="320" r="2.4"/>
+    <circle cx="1600" cy="420" r="1.6"/>
+    <circle cx="2000" cy="300" r="3.2"/>
+  </g>
+
+  <!-- Subtle vignette -->
+  <rect width="100%" height="100%" fill="black" opacity="0.14"/>
+
+</svg>
